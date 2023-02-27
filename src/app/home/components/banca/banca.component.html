@@ -1,0 +1,42 @@
+<div *ngIf="administrador" >
+	Bienvenid@ {{nombre}}<br><br>
+	<button [routerLink]="['/']">Cerrar sesión</button><br><br>
+	
+	<table>
+	<tr>
+		<td>Número de cuenta</td>
+		<td>Propietario</td>
+		<td>Saldo (Michidólares)</td>
+		<td>ESTATUS</td>
+		<td>ACCIONES</td>
+	</tr>
+	<tr *ngFor="let cuenta of cuentas">
+		<td>{{cuenta.cuenta}}</td>
+		<td>{{cuenta.nombre}}</td>
+		<td>{{cuenta.saldo}}</td>
+		<td>{{cuenta.estatus}}</td>
+		<td>[Activar/Desactivar]</td>
+	</tr>
+	</table>
+	<br><br>
+	
+	<h3>Nueva Cuenta</h3>
+	Nombre     <input type="text"     [(ngModel)]="nuevacuenta_nombre"     /><br>
+	Usuario    <input type="text"     [(ngModel)]="nuevacuenta_username"   /><br>
+	Contraseña <input type="password" [(ngModel)]="nuevacuenta_password"/><br>	
+	<div><button type="button" (click)="crearCuenta()">Crear</button></div>
+	
+</div>
+
+<div *ngIf="!administrador">
+	Bienvenid@ {{nombre}}. Número de cuenta: {{numeroCuenta}}<br><br>
+	<button [routerLink]="['/']">Cerrar sesión</button><br><br>
+	<Button (click)="generarReferencia()" *ngIf="!genReferencia">Generar Referencia para retiro en cajero</Button><br><br>
+	<Button (click)="incrementaSaldo()">Incrementar Saldo</Button><br><br>
+	<div *ngIf="genReferencia">
+		Tu clave de retiro es: {{referencia}}<br><br>
+	</div>	
+	------------------------------------------------------<br>		
+	<b>Tu saldo es de: {{saldo}} michi dólares</b><br>
+	------------------------------------------------------<br>
+</div>

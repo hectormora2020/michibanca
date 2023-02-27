@@ -1,0 +1,17 @@
+<h1>Bienvenid@ a la michi-banca</h1>
+<div>
+
+    <div>Usuario</div>
+    <div><input type="text" [(ngModel)]="username" /></div>
+
+    <br>
+
+    <div>Contraseña</div>
+	<div><input type="password" [(ngModel)]="contrasenya" /></div>
+
+    <br>
+
+    <div><button type="button" [routerLink]="['banca']" (click)="validaUsuario()">Ingresar</button></div>
+    <p *ngIf="error" [ngClass]="{'tipoError': error}">{{mensajeError}}</p>
+
+</div>
